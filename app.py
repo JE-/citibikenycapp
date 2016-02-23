@@ -22,7 +22,7 @@ app.nquestions=len(app.questions)
 
 @app.route('/')
 def root():
-    return render_template('citiBike_NYC_2015_v1.html') #index.html')
+    return render_template('index.html')
     #return redirect('/index_lulu')
 
 @app.route('/index_lulu',methods=['GET','POST'])
