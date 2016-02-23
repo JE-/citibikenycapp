@@ -20,10 +20,19 @@ app.nquestions=len(app.questions)
 #     os.path.join(os.path.dirname(BASE_DIR), 'static'),
 # )
 
-@app.route('/')
+def roundTime(dt=None, roundTo=60):
+    if dt == None : dt = datetime.datetime.now()
+    seconds = (dt - dt.min).seconds
+    # // is a floor division, not a comment on following line:
+    rounding = (seconds+roundTo/2) // roundTo * roundTo
+    return dt + datetime.timedelta(0,rounding-seconds,-dt.microsecond)
+
+@app.route('/',methods=['GET','POST'])
 def root():
-    return render_template('index.html')
-    #return redirect('/index_lulu')
+    if request.method == 'GET':
+        return render_template('index.html')
+    else:
+        pass
 
 @app.route('/index_lulu',methods=['GET','POST'])
 def index_lulu():
