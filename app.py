@@ -80,13 +80,6 @@ def get_predictions(citibike_api_df):
 import requests
 url = 'https://www.citibikenyc.com/stations/json'
 r = requests.get(url)
-r.text
-r.json()
-r.json().keys()
-print r.json()['executionTime']
-r.json()['stationBeanList']
-len(r.json()['stationBeanList']) # 507 docks
-r.json()['stationBeanList'][0] # First key/station
 from pandas.io.json import json_normalize
 citibike_api_live = json_normalize(r.json()['stationBeanList']) # convert to DF
 #
