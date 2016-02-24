@@ -80,9 +80,10 @@ def get_predictions(citibike_api_df):
 import requests
 url = 'https://www.citibikenyc.com/stations/json'
 r = requests.get(url)
-from pandas.io.json import json_normalize
-citibike_api_live = json_normalize(r.json()['stationBeanList']) # convert to DF
-#
+#from pandas.io.json import json_normalize
+#citibike_api_live = json_normalize(r.json()['stationBeanList']) # convert to DF
+
+
 #
 # from pandas.io.json import json_normalize
 # r = requests.get("http://jerez.cartodb.com/api/v2/sql?q=SELECT * from stations_live &api_key=235b31f3d8a7a8a8ad57ada8dec909a2455b7cd2")
