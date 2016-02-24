@@ -54,41 +54,41 @@ def transform_citibike_api_df(citibike_api_df,time_now_rounded):
                     'temp':temp,'humidity':humidity,'windspeed':windspeed,'visibility':visibility\
                     ,'rain':rain,'snow':snow},ignore_index=True)
     return df
-#
-# def helper_function(s,df):
-#     try:
-#         with open('station_model_' +str(s) +'.cPickle', 'r') as f:
-#             station_model = cPickle.load(f)
-#         return station_model.predict(df)[0]
-#     except:
-#         return 0
-#
-# # get citiBike_API_df and return a df with predictions for each station
-# def get_predictions(citibike_api_df):
-#     import datetime
-#     time_now = datetime.datetime.now()
-#     time_now_rounded = roundTime(time_now, roundTo=30*60)
-#
-#     df = transform_citibike_api_df(citibike_api_df,time_now_rounded)
-#     try:
-#         citibike_api_df['prediction'] = citibike_api_df['id'].apply(lambda x: helper_function(x, df))
-#     except:
-#         print 'passing...'
-#         citibike_api_df[citibike_api_df['id'] == s]['prediction'] = 0
-#     return citibike_api_df
-#
-# import requests
-# url = 'https://www.citibikenyc.com/stations/json'
-# r = requests.get(url)
-# r.text
-# r.json()
-# r.json().keys()
-# print r.json()['executionTime']
-# r.json()['stationBeanList']
-# len(r.json()['stationBeanList']) # 507 docks
-# r.json()['stationBeanList'][0] # First key/station
-# from pandas.io.json import json_normalize
-# citibike_api_live = json_normalize(r.json()['stationBeanList']) # convert to DF
+
+def helper_function(s,df):
+    try:
+        with open('station_model_' +str(s) +'.cPickle', 'r') as f:
+            station_model = cPickle.load(f)
+        return station_model.predict(df)[0]
+    except:
+        return 0
+
+# get citiBike_API_df and return a df with predictions for each station
+def get_predictions(citibike_api_df):
+    import datetime
+    time_now = datetime.datetime.now()
+    time_now_rounded = roundTime(time_now, roundTo=30*60)
+
+    df = transform_citibike_api_df(citibike_api_df,time_now_rounded)
+    try:
+        citibike_api_df['prediction'] = citibike_api_df['id'].apply(lambda x: helper_function(x, df))
+    except:
+        print 'passing...'
+        citibike_api_df[citibike_api_df['id'] == s]['prediction'] = 0
+    return citibike_api_df
+
+import requests
+url = 'https://www.citibikenyc.com/stations/json'
+r = requests.get(url)
+r.text
+r.json()
+r.json().keys()
+print r.json()['executionTime']
+r.json()['stationBeanList']
+len(r.json()['stationBeanList']) # 507 docks
+r.json()['stationBeanList'][0] # First key/station
+from pandas.io.json import json_normalize
+citibike_api_live = json_normalize(r.json()['stationBeanList']) # convert to DF
 #
 #
 # from pandas.io.json import json_normalize
