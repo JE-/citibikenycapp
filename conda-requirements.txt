@@ -1,2 +1,2 @@
 nomkl
-pandas.io.json
+pandas
