@@ -90,7 +90,7 @@ cartodb_df = json_normalize(data['rows']) # convert to DF
 
 stations_with_predictions = get_predictions(citibike_api_live)
 
-import urllib, json
+#import urllib, json
 
 cartodb_table = 'stations_live'
 col_name1 = 'availableDocks'

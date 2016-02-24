@@ -1,4 +1,3 @@
 nomkl
 pandas
-urllib
 json
