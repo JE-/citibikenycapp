@@ -88,16 +88,16 @@ r = requests.get("http://jerez.cartodb.com/api/v2/sql?q=SELECT * from stations_l
 data = r.json()
 cartodb_df = json_normalize(data['rows']) # convert to DF
 
-stations_with_predictions = get_predictions(stations_live)
+#stations_with_predictions = get_predictions(stations_live)
 
-# import urllib, json
-#
-# cartodb_table = 'stations_live'
-# col_name1 = 'availableDocks'
-# col_name2 = 'availableBikes'
-# col_name3 = 'predictions'
-# cartodb_account = 'jerez'
-# cartodb_key = '235b31f3d8a7a8a8ad57ada8dec909a2455b7cd2'
+import urllib, json
+
+cartodb_table = 'stations_live'
+col_name1 = 'availableDocks'
+col_name2 = 'availableBikes'
+col_name3 = 'predictions'
+cartodb_account = 'jerez'
+cartodb_key = '235b31f3d8a7a8a8ad57ada8dec909a2455b7cd2'
 #
 # temp_col = []
 # # temp_df = pd.DataFrame(live_scolumns=['availableBikes','availableDocks','id'])

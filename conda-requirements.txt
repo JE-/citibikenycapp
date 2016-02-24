@@ -1,2 +1,4 @@
 nomkl
 pandas
+urllib
+json
