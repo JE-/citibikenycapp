@@ -20,40 +20,40 @@ app.nquestions=len(app.questions)
 #     os.path.join(os.path.dirname(BASE_DIR), 'static'),
 # )
 
-# def roundTime(dt=None, roundTo=60):
-#     if dt == None : dt = datetime.datetime.now()
-#     seconds = (dt - dt.min).seconds
-#     # // is a floor division, not a comment on following line:
-#     rounding = (seconds+roundTo/2) // roundTo * roundTo
-#     return dt + datetime.timedelta(0,rounding-seconds,-dt.microsecond)
-#
-# def transform_citibike_api_df(citibike_api_df,time_now_rounded):
-#     #df = pd.DataFrame(columns=['month','dayofweek','hour','minute','temp','humidity','windspeed','visibility','rain','snow'])
-#     month = time_now_rounded.month
-#     dayofweek = time_now_rounded.weekday()
-#     hour = time_now_rounded.hour
-#     minute = time_now_rounded.minute
-#
-#     # get weather data
-#     import requests
-#     import re
-#     url = ('http://api.wunderground.com/api/%s/geolookup/conditions/q/NY/New_York_City.json')% 'e7cb14d1c7eeaf3f'
-#     r = requests.get(url)
-#     r.text
-#     r.json()
-#     r.json().keys()
-#     temp = r.json()['current_observation']['temp_f']
-#     humidity = float(r.json()['current_observation']['relative_humidity'].replace('%',''))
-#     windspeed = r.json()['current_observation']['wind_mph']
-#     visibility = float(r.json()['current_observation']['visibility_mi'])
-#     rain = 1 if re.search(r'[rR]ain',r.json()['current_observation']['weather']) else 0
-#     snow = 1 if re.search(r'[sS]now',r.json()['current_observation']['weather']) else 0
-#
-#     df = pd.DataFrame()
-#     df = df.append({'month':month,'dayofweek':dayofweek,'hour':hour,'minute':minute,\
-#                     'temp':temp,'humidity':humidity,'windspeed':windspeed,'visibility':visibility\
-#                     ,'rain':rain,'snow':snow},ignore_index=True)
-#     return df
+def roundTime(dt=None, roundTo=60):
+    if dt == None : dt = datetime.datetime.now()
+    seconds = (dt - dt.min).seconds
+    # // is a floor division, not a comment on following line:
+    rounding = (seconds+roundTo/2) // roundTo * roundTo
+    return dt + datetime.timedelta(0,rounding-seconds,-dt.microsecond)
+
+def transform_citibike_api_df(citibike_api_df,time_now_rounded):
+    #df = pd.DataFrame(columns=['month','dayofweek','hour','minute','temp','humidity','windspeed','visibility','rain','snow'])
+    month = time_now_rounded.month
+    dayofweek = time_now_rounded.weekday()
+    hour = time_now_rounded.hour
+    minute = time_now_rounded.minute
+
+    # get weather data
+    import requests
+    import re
+    url = ('http://api.wunderground.com/api/%s/geolookup/conditions/q/NY/New_York_City.json')% 'e7cb14d1c7eeaf3f'
+    r = requests.get(url)
+    r.text
+    r.json()
+    r.json().keys()
+    temp = r.json()['current_observation']['temp_f']
+    humidity = float(r.json()['current_observation']['relative_humidity'].replace('%',''))
+    windspeed = r.json()['current_observation']['wind_mph']
+    visibility = float(r.json()['current_observation']['visibility_mi'])
+    rain = 1 if re.search(r'[rR]ain',r.json()['current_observation']['weather']) else 0
+    snow = 1 if re.search(r'[sS]now',r.json()['current_observation']['weather']) else 0
+
+    df = pd.DataFrame()
+    df = df.append({'month':month,'dayofweek':dayofweek,'hour':hour,'minute':minute,\
+                    'temp':temp,'humidity':humidity,'windspeed':windspeed,'visibility':visibility\
+                    ,'rain':rain,'snow':snow},ignore_index=True)
+    return df
 #
 # def helper_function(s,df):
 #     try:
