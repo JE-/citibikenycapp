@@ -122,7 +122,7 @@ for station_id in pd.unique(citibike_api_live['id']):
     sql = "UPDATE %s SET %s = %d WHERE id = %d" % (cartodb_table,col_name2,citibike_api_live[citibike_api_live.id == station_id]['availableBikes'],station_id)
     url = "http://%s.cartodb.com/api/v2/sql?q=%s&api_key=%s" % (cartodb_account,sql,cartodb_key)
     u = urllib.urlopen(url)
-    data = u.read() 
+    data = u.read()
     dataJSON = json.loads(data)
 
     sql = "UPDATE %s SET %s = %d WHERE id = %d" % (cartodb_table,col_name3,stations_with_predictions[stations_with_predictions.id == station_id]['prediction'],station_id)
@@ -134,8 +134,6 @@ for station_id in pd.unique(citibike_api_live['id']):
 @app.route('/',methods=['GET','POST'])
 def root():
     if request.method == 'GET':
-        print stations_live
-
         return render_template('index.html')
     else:
         return render_template('userinfo_lulu.html')
