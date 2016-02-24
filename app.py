@@ -88,7 +88,7 @@ r = requests.get("http://jerez.cartodb.com/api/v2/sql?q=SELECT * from stations_l
 data = r.json()
 cartodb_df = json_normalize(data['rows']) # convert to DF
 
-#stations_with_predictions = get_predictions(stations_live)
+stations_with_predictions = get_predictions(citibike_api_live)
 
 import urllib, json
 
